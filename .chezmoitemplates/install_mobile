@@ -6,7 +6,7 @@ $APT update
 $APT upgrade
 
 # Install packages
-$APT install curl dnsutils git gnupg gzip inetutils mosh net-tools \
+$APT install age curl dnsutils git gnupg gzip inetutils mosh net-tools \
     openssh pinentry tmux vim zsh
 
 # Cleanup
