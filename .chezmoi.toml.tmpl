@@ -18,10 +18,10 @@
 {{-   $mobile = true -}}
 {{- end -}}
 
-encryption = "gpg"
-[gpg]
-    recipient = "A97E0F13BED9240E490951985E30437FC6E3CD7F"
-    args = ["--quiet"]
+encryption = "age"
+[age]
+    identity = "~/chezmoi.key"
+    recipient = "age1xxerfddw7shly3wumass56ax5zkf90gd73dqrl8exskynqwhkcmsxxtdn3"
 
 [git]
     autoAdd = true

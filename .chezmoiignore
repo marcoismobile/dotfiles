@@ -1,5 +1,6 @@
 README.md
-{{- if (or .home .server) }}
+chezmoi.key.age
+{{- if .server }}
 .ssh
 {{- end }}
 {{- if .work }}
