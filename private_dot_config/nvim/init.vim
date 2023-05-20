@@ -6,7 +6,7 @@ set t_Co=256
 set encoding=utf-8
 " set unix file format
 set fileformat=unix
-set termguicolors
+"set termguicolors
 set guicursor=
 " fix background color bug (Kitty term)
 "let &t_ut=''
