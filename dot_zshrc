@@ -43,8 +43,8 @@ setopt pushd_ignore_dups
 setopt pushdminus
 
 # Suffix aliases
-alias -s txt=vim
-alias -s md=vim
+alias -s txt=v
+alias -s md=v
 alias -s pdf=firefox
 
 # Aliases
@@ -73,9 +73,9 @@ alias rip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias sd='shred -u'
 alias sz='sudo HOME=$HOME /bin/zsh'
 alias sshz=sshz
-alias t='vim ~/todo.md'
+alias t='v ~/todo.md'
 alias tm='tmux attach -t $(hostname) || tmux new -s $(hostname)'
-alias v='vim'
+alias v='nvim || vim || vi'
 
 # Prepend local bin folders to path
 path=("$HOME/bin" "$HOME/.local/bin" $path)
