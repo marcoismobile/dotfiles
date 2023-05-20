@@ -6,8 +6,9 @@ set t_Co=256
 set encoding=utf-8
 " set unix file format
 set fileformat=unix
+set guicursor=
 " fix background color bug (Kitty term)
-let &t_ut=''
+"let &t_ut=''
 " no backup or swap, autoread file when external edited
 set nobackup nowritebackup noswapfile autoread
 " search
