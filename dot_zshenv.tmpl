@@ -9,16 +9,20 @@ export BROWSER=chromium
 {{- else -}}
 export BROWSER=firefox
 {{- end }}
+{{ if not .mobile -}}
 # Set cache to RAM disk
 export XDG_CACHE_HOME=/dev/shm
+{{- end }}
 # Set config directory
 export XDG_CONFIG_HOME=$HOME/.config
 # Set data directory
 export XDG_DATA_HOME=$HOME/.local/share
+{{ if (or .home .work) -}}
 # Set desktop
 export XDG_CURRENT_DESKTOP=sway
 # Set WAYLAND backend
 export GDK_BACKEND=wayland
 export QT_QPA_PLATFORM=wayland
+{{- end }}
 # Set pass directory
 export PASSWORD_STORE_DIR=/$HOME/repositories/password-store
