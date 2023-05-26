@@ -1,15 +1,39 @@
+" Autoinstall vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+" Jellybeans Theme
+Plug 'nanotech/jellybeans.vim'
+" Airline
+Plug 'vim-airline/vim-airline'
+" Airline Themes
+Plug 'vim-airline/vim-airline-themes'
+" CtrlP (File browser)
+Plug 'ctrlpvim/ctrlp.vim'
+" Fugitive (Git)
+Plug 'tpope/vim-fugitive'
+" GitGutter (Git diff)
+Plug 'airblade/vim-gitgutter'
+" Syntastic (Syntax checking)
+Plug 'vim-syntastic/syntastic'
+" GPG (GPG encrypt/decrypt)
+Plug 'jamessan/vim-gnupg'
+" COQ
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+call plug#end()
+
 " not compatible with the old-fashion vi mode
 set nocompatible
-" 256 color mode
-set t_Co=256
 " encoding utf-8
 set encoding=utf-8
-" set unix file format
-set fileformat=unix
-"set termguicolors
+" colors
+set termguicolors
 set guicursor=
-" fix background color bug (Kitty term)
-"let &t_ut=''
 " no backup or swap, autoread file when external edited
 set nobackup nowritebackup noswapfile autoread
 " search
@@ -48,26 +72,6 @@ set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
 syntax on
 filetype plugin indent on
 
-" Jellybeans (Theme)
-set runtimepath^=~/.submodules/vim-jellybeans
-" Airline (Status bar)
-set runtimepath^=~/.submodules/vim-airline
-set runtimepath^=~/.submodules/vim-airline-themes
-" Tagbar (Tags browser)
-set runtimepath^=~/.submodules/vim-tagbar
-" CtrlP (File browser)
-set runtimepath^=~/.submodules/vim-ctrlp
-" Fugitive (Git)
-set runtimepath^=~/.submodules/vim-fugitive
-" GitGutter (Git diff)
-set runtimepath^=~/.submodules/vim-gitgutter
-" Syntastic (Syntax checking)
-set runtimepath^=~/.submodules/vim-syntastic
-" Puppet (Puppet)
-set runtimepath^=~/.submodules/vim-puppet
-" GPG (GPG encrypt/decrypt)
-set runtimepath^=~/.submodules/vim-gnupg
-
 " todo command
 command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
 " create readable JSON view
@@ -76,12 +80,8 @@ command! ShowJSON %!python -m json.tool
 " shortcuts
 inoremap <script> <silent> <buffer> time<Tab> <C-R>=strftime("%H:%M")<CR>
 inoremap <script> <silent> <buffer> date<Tab> <C-R>=strftime("%Y-%m-%d")<CR>
-noremap <C-w>t :TagbarToggle<CR>
 noremap <C-w>- :split<CR>
 noremap <C-w>\ :vsplit<CR>
-
-" set column identifier
-set colorcolumn=110
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -94,9 +94,6 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_puppet_checkers=['puppetlint']
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_yaml_checkers = ['yamllint']
-
-" YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion = 1
 
 " CtrlP
 let g:ctrlp_cmd = 'CtrlPMixed'
@@ -116,3 +113,7 @@ let g:airline#extensions#whitespace#enabled=0
 " Theme
 silent! colorscheme jellybeans
 silent! let g:airline_theme='minimalist'
+highlight Comment ctermfg=darkgray cterm=italic
+
+" COQ
+autocmd VimEnter * COQnow --shut-up
