@@ -25,68 +25,68 @@ Plug 'vim-syntastic/syntastic'
 " GPG (GPG encrypt/decrypt)
 Plug 'jamessan/vim-gnupg'
 
-" Only is python is installed
+" Only if python is installed
 if python_installed
-" LSP
-Plug 'neovim/nvim-lspconfig'
-" COQ
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+  " LSP
+  Plug 'neovim/nvim-lspconfig'
+  " COQ
+  Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+  Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 endif
 
 call plug#end()
 
-" not compatible with the old-fashion vi mode
+" Not compatible with the old-fashion vi mode
 set nocompatible
-" encoding utf-8
+" Encoding utf-8
 set encoding=utf-8
-" colors
+" Colors
 set termguicolors
 set guicursor=
-" no backup or swap, autoread file when external edited
+" No backup or swap, autoread file when external edited
 set nobackup nowritebackup noswapfile autoread
-" search
+" Search
 set hlsearch incsearch ignorecase smartcase
-" show cursor position in status bar
+" Show cursor position in status bar
 set ruler
-" show absolute line number of the current line
+" Show absolute line number of the current line
 set number
-" disable unloading of buffers
+" Disable unloading of buffers
 set hidden
-" set shorter delays
+" Set shorter delays
 set timeoutlen=1000 ttimeoutlen=10 updatetime=100
-" remove current mode status
+" Remove current mode status
 set noshowmode
-" disable code folding
+" Disable code folding
 set nofoldenable
-" set maximum number of tabs
+" Set maximum number of tabs
 set tabpagemax=50
-" scroll the window so we can always see 10 lines around the cursor
+" Scroll the window so we can always see 10 lines around the cursor
 set scrolloff=10
-" turn off alt shortcuts
+" Turn off alt shortcuts
 set winaltkeys=no
-" disable annoying sound on errors
+" Disable annoying sound on errors
 set noerrorbells
 set novisualbell
 set vb t_vb=
-" set ident defaults
+" Set ident defaults
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-" show special chars
+" Show special chars
 set list
 set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
-
+" Syntax highlighing
 syntax on
 filetype plugin indent on
 
-" todo command
+" Todo command
 command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
-" create readable JSON view
+" Create readable JSON view
 command! ShowJSON %!python -m json.tool
 
-" shortcuts
+" Shortcuts
 inoremap <script> <silent> <buffer> time<Tab> <C-R>=strftime("%H:%M")<CR>
 inoremap <script> <silent> <buffer> date<Tab> <C-R>=strftime("%Y-%m-%d")<CR>
 noremap <C-w>- :split<CR>
@@ -170,6 +170,6 @@ for _, server in pairs(servers) do
 end
 EOF
 
-" COQ
+" Start COQ
 autocmd VimEnter * COQnow --shut-up
 endif
