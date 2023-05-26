@@ -27,7 +27,7 @@ Plug 'neovim/nvim-lspconfig'
 " COQ
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-all plug#end()
+call plug#end()
 
 " not compatible with the old-fashion vi mode
 set nocompatible
