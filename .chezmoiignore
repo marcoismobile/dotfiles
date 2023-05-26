@@ -8,9 +8,10 @@ chezmoi.key.age
 {{- end }}
 {{- if (or .mobile .server) }}
 background.png
-{{- end }}
-{{- if .mobile }}
-.config
+.config/foot
+.config/i3status
+.config/mutt
+.config/sway
 {{- end }}
 {{- if not .mobile }}
 .termux
