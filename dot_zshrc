@@ -72,10 +72,6 @@ alias t='$EDITOR ~/todo.md'
 alias tm='tmux attach -t $(hostname) || tmux new -s $(hostname)'
 alias v='$EDITOR'
 
-# Prepend local bin folders to path
-#path=("$HOME/bin" "$HOME/.local/bin" $path)
-#export PATH
-
 # Use zshrc.remote config on remote machines
 function sshz() {
     # Copy .zshrc.remote to remote node if we have a home folder
