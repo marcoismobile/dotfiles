@@ -21,8 +21,8 @@ set $down Down
 
 ## General
 #
-# Wallpaper
-output * bg ~/background.png center #000000
+# Background
+output * bg #000000 solid_color
 #
 # Font
 font pango:MesloLGS NF bold 7
@@ -258,5 +258,5 @@ exec swayidle -w \
 
 ## DBUS
 #
-exec systemctl --user import-environment DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
-exec dbus-update-activation-environment WAYLAND_DISPLAY
+#exec systemctl --user import-environment DBUS_SESSION_BUS_ADDRESS WAYLAND_DISPLAY
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY
