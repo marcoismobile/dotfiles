@@ -25,7 +25,7 @@ set $down Down
 output * bg ~/background.png center #000000
 #
 # Font
-font pango:DejaVu Sans Mono bold 7
+font pango:MesloLGS NF bold 7
 #
 # Colors
 #
@@ -72,7 +72,6 @@ input type:touchpad {
 set $primary "eDP-1"
 output $primary {
     scale 1.25
-    position 0,0
 }
 # Clamshell mode
 bindswitch --reload --locked lid:on output $primary disable
@@ -111,9 +110,6 @@ bindsym $mod+Return exec foot
 #
 # Start internet browser
 bindsym $mod+i exec $BROWSER
-#
-# Start Visual Studio Code
-bindsym $mod+c exec code --enable-features=UseOzonePlatform --ozone-platform=wayland
 #
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -215,7 +211,6 @@ bindsym $mod+p mode $mode_system
 bindsym XF86AudioRaiseVolume exec "pactl -- set-sink-volume 0 +5%"
 bindsym XF86AudioLowerVolume exec "pactl -- set-sink-volume 0 -5%"
 bindsym XF86AudioMute exec "pactl set-sink-mute 0 toggle"
-bindsym XF86AudioPlay exec "mpc --quiet toggle"
 #
 # Brightness
 bindsym XF86MonBrightnessUp exec "brightnessctl s +10%"
@@ -236,7 +231,7 @@ bar {
         separator #888888
     }
     separator_symbol " "
-    font pango:DejaVu Sans Mono bold 10
+    font pango:MesloLGS NF bold 10
 }
 
 ## Scratchpad terminal
@@ -263,4 +258,5 @@ exec swayidle -w \
 
 ## DBUS
 #
+exec systemctl --user import-environment DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP WAYLAND_DISPLAY
 exec dbus-update-activation-environment WAYLAND_DISPLAY
