@@ -7,7 +7,6 @@ chezmoi.key.age
 .ssh/known_hosts_managed
 {{- end }}
 {{- if (or .mobile .server) }}
-background.png
 .config/foot
 .config/i3status
 .config/mutt
