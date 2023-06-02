@@ -9,8 +9,6 @@ unlet data_dir
 let python_installed = executable('python3')
 
 call plug#begin()
-" Tokyonight Theme
-Plug 'folke/tokyonight.nvim'
 " Jellybeans Theme
 Plug 'nanotech/jellybeans.vim'
 " Airline
@@ -125,8 +123,7 @@ let g:airline#extensions#tabline#buffer_nr_show=1
 let g:airline#extensions#whitespace#enabled=0
 
 " Theme
-"silent! colorscheme jellybeans
-silent! colorscheme tokyonight
+silent! colorscheme jellybeans
 silent! let g:airline_theme='minimalist'
 highlight Comment ctermfg=darkgray cterm=italic
 
