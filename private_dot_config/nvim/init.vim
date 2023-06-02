@@ -25,6 +25,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-syntastic/syntastic'
 " GPG (GPG encrypt/decrypt)
 Plug 'jamessan/vim-gnupg'
+" NERD Commenter
+Plug 'preservim/nerdcommenter'
 
 " Only if python is installed
 if python_installed
