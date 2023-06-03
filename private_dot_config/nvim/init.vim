@@ -11,18 +11,16 @@ let python_installed = executable('python3')
 call plug#begin()
 " Jellybeans Theme
 Plug 'nanotech/jellybeans.vim'
-" Airline
-Plug 'vim-airline/vim-airline'
-" Airline Themes
-Plug 'vim-airline/vim-airline-themes'
+" Lightline
+Plug 'itchyny/lightline.vim'
 " CtrlP (File browser)
 Plug 'ctrlpvim/ctrlp.vim'
-" Fugitive (Git)
+" Fugitive (Git functionality)
 Plug 'tpope/vim-fugitive'
-" GitGutter (Git diff)
+" GitGutter (Git in gutter)
 Plug 'airblade/vim-gitgutter'
-" Syntastic (Syntax checking)
-Plug 'vim-syntastic/syntastic'
+" ALE (Asynchronous Lint Engine)
+Plug 'dense-analysis/ale'
 " GPG (GPG encrypt/decrypt)
 Plug 'jamessan/vim-gnupg'
 " NERD Commenter
@@ -46,6 +44,7 @@ set encoding=utf-8
 " Colors
 set termguicolors
 set guicursor=
+set background=dark
 " No backup or swap, autoread file when external edited
 set nobackup nowritebackup noswapfile autoread
 " Search
@@ -95,17 +94,27 @@ inoremap <script> <silent> <buffer> date<Tab> <C-R>=strftime("%Y-%m-%d")<CR>
 noremap <C-w>- :split<CR>
 noremap <C-w>\ :vsplit<CR>
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_puppet_checkers=['puppetlint']
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_yaml_checkers = ['yamllint']
+" Theme
+silent! colorscheme jellybeans
+
+" Lightline
+let g:lightline = {
+    \ 'colorscheme': 'jellybeans',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'FugitiveHead'
+    \ },
+\ }
+
+" ALE
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+    \ 'python': ['flake8'],
+    \ 'yaml': ['yamllint'],
+\ }
 
 " CtrlP
 let g:ctrlp_cmd = 'CtrlPMixed'
@@ -115,17 +124,7 @@ let g:ctrlp_max_files = 500
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn)$',
     \ 'file': '\v\.(pyc|swp|vim)$',
-    \ }
-
-" Airline
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#buffer_nr_show=1
-let g:airline#extensions#whitespace#enabled=0
-
-" Theme
-silent! colorscheme jellybeans
-silent! let g:airline_theme='minimalist'
-highlight Comment ctermfg=darkgray cterm=italic
+\ }
 
 " Nvim-lspconfig and coq_nvim
 if python_installed
