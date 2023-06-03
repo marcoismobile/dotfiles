@@ -114,6 +114,7 @@ let g:lightline = {
 \ }
 
 " ALE
+let g:ale_virtualtext_cursor = 'disabled'
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
     \ 'python': ['flake8'],
