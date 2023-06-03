@@ -9,8 +9,8 @@ unlet data_dir
 let python_installed = executable('python3')
 
 call plug#begin()
-" Jellybeans Theme
-Plug 'nanotech/jellybeans.vim'
+" Theme
+Plug 'joshdick/onedark.vim'
 " Lightline
 Plug 'itchyny/lightline.vim'
 " CtrlP (File browser)
@@ -95,11 +95,15 @@ noremap <C-w>- :split<CR>
 noremap <C-w>\ :vsplit<CR>
 
 " Theme
-silent! colorscheme jellybeans
+let g:onedark_terminal_italics = 1
+let g:onedark_color_overrides = {
+    \ "background": { "gui": "#000000" }
+\ }
+silent! colorscheme onedark
 
 " Lightline
 let g:lightline = {
-    \ 'colorscheme': 'jellybeans',
+    \ 'colorscheme': 'onedark',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
