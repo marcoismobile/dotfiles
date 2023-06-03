@@ -6,7 +6,7 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 unlet data_dir
 
-let python_installed = executable('python3')
+let lsp_enabled = has('nvim') && executable('python3')
 
 call plug#begin()
 " Theme
@@ -26,8 +26,7 @@ Plug 'jamessan/vim-gnupg'
 " NERD Commenter
 Plug 'preservim/nerdcommenter'
 
-" Only if python is installed
-if python_installed
+if lsp_enabled
   " LSP
   Plug 'neovim/nvim-lspconfig'
   " COQ
@@ -83,6 +82,15 @@ set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
 syntax on
 filetype plugin indent on
 
+" Netrw
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_keepdir = 0
+nnoremap <Leader>f :Lexplore<CR>
+
 " Todo command
 command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
 " Create readable JSON view
@@ -132,7 +140,7 @@ let g:ctrlp_custom_ignore = {
 \ }
 
 " Nvim-lspconfig and coq_nvim
-if python_installed
+if lsp_enabled
 lua <<EOF
 
 -- Mappings
@@ -180,3 +188,4 @@ EOF
 " Start COQ
 autocmd VimEnter * COQnow --shut-up
 endif
+unlet lsp_enabled
