@@ -1,10 +1,12 @@
 " Autoinstall vim-plug
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+let plug_path = (has('nvim') ? stdpath('data') . '/site' : '~/.vim') . '/autoload/plug.vim'
+let plug_install = 0
+if empty(glob(plug_path))
+  silent execute '!curl -fLo '.plug_path.' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  execute 'source ' . fnameescape(plug_path)
+  let plug_install = 1
 endif
-unlet data_dir
+unlet plug_path
 
 let lsp_enabled = has('nvim') && executable('python3')
 
@@ -35,6 +37,11 @@ if lsp_enabled
 endif
 
 call plug#end()
+
+if plug_install
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+unlet plug_install
 
 " Not compatible with the old-fashion vi mode
 set nocompatible
@@ -125,6 +132,7 @@ let g:lightline = {
 let g:ale_virtualtext_cursor = 'disabled'
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
+    \ 'puppet': ['puppetlint'],
     \ 'python': ['flake8'],
     \ 'yaml': ['yamllint'],
 \ }
