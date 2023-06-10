@@ -31,6 +31,10 @@ Plug 'preservim/nerdcommenter'
 if lsp_enabled
   " LSP
   Plug 'neovim/nvim-lspconfig'
+  if has('nvim-0.8')
+    " TreeSitter
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  endif
   " COQ
   Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
   Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
@@ -48,9 +52,8 @@ set nocompatible
 " Encoding utf-8
 set encoding=utf-8
 " Colors
-set termguicolors
-set guicursor=
 set background=dark
+set guicursor=
 " No backup or swap, autoread file when external edited
 set nobackup nowritebackup noswapfile autoread
 " Search
@@ -78,10 +81,7 @@ set noerrorbells
 set novisualbell
 set vb t_vb=
 " Set ident defaults
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 " Show special chars
 set list
 set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
@@ -110,15 +110,18 @@ noremap <C-w>- :split<CR>
 noremap <C-w>\ :vsplit<CR>
 
 " Theme
+"let g:onedark_termcolors = 16
 let g:onedark_terminal_italics = 1
 let g:onedark_color_overrides = {
     \ "background": { "gui": "#000000" }
 \ }
+
+"exec 'source ' . stdpath('config') . '/theme.vim'
 silent! colorscheme onedark
 
 " Lightline
 let g:lightline = {
-    \ 'colorscheme': 'onedark',
+    \ 'colorscheme': '16color',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -146,6 +149,18 @@ let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn)$',
     \ 'file': '\v\.(pyc|swp|vim)$',
 \ }
+
+" Treesitter
+if has('nvim-0.8')
+lua <<EOF
+require 'nvim-treesitter.configs'.setup {
+  ensure_installed = { "bash", "c", "lua", "python", "vim", "vimdoc", "query" },
+  highlight = {
+    enable = true,
+  },
+}
+EOF
+endif
 
 " Nvim-lspconfig and coq_nvim
 if lsp_enabled
