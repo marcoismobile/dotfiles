@@ -110,7 +110,7 @@ noremap <C-w>- :split<CR>
 noremap <C-w>\ :vsplit<CR>
 
 " Theme
-"let g:onedark_termcolors = 16
+let g:onedark_termcolors = 16
 let g:onedark_terminal_italics = 1
 let g:onedark_color_overrides = {
     \ "background": { "gui": "#000000" }
