@@ -26,7 +26,7 @@ export QT_QPA_PLATFORM=wayland
 {{- end }}
 # Add local bin folders
 local_paths=($HOME/bin $HOME/.local/bin $HOME/node_modules/.bin)
-path=($path ${local_paths:|path})
+path=(${local_paths:|path} $path)
 export PATH
 # Set pass directory
 export PASSWORD_STORE_DIR=/$HOME/repositories/password-store
