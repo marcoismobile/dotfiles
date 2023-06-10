@@ -71,7 +71,7 @@ input type:touchpad {
 # Primary screen
 set $primary "eDP-1"
 output $primary {
-    scale 1.25
+    scale 1.5
 }
 # Clamshell mode
 bindswitch --reload --locked lid:on output $primary disable
