@@ -1,0 +1,135 @@
+# Account switch bindings
+macro index <f2> '<sync-mailbox><enter-command>source "pass work/mutt.account |"<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><enter-command>source "pass marco/mutt.account |"<enter><change-folder>!<enter>'
+
+# Accounts
+#source "pass marco/mutt.account |"
+#folder-hook $folder "source 'pass marco/mutt.account |'"
+source "pass work/mutt.account |"
+#folder-hook $folder "source 'pass work/mutt.account |'"
+
+# General
+unset help
+unset wait_key
+set sleep_time = 0
+set quit
+set delete
+unset move
+unset confirmappend
+set pipe_decode
+set thorough_search
+set editor = 'vim'
+set include = yes
+set charset = 'utf-8'
+set fast_reply
+set smart_wrap
+set net_inc = 10
+set sort_alias = alias
+set reverse_alias = yes
+
+# Status bar
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Index view
+set date_format = "%d-%m %H:%M"
+set sort = 'threads'
+set sort_aux = 'reverse-last-date-received'
+set index_format = "%2C [%Z] (%-4.4c)  %D  %-25.25F  %-80.80s"
+set collapse_unread
+set uncollapse_jump
+set sort_re
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# Keybindings
+bind index ^            imap-fetch-mail
+bind index <tab>        sync-mailbox
+bind index -            collapse-thread
+bind index _            collapse-all
+bind index g            first-entry
+bind index G            last-entry
+bind index \CD          purge-message
+bind index,pager \Cp    sidebar-prev
+bind index,pager \Cn    sidebar-next
+bind index,pager \Co    sidebar-open
+bind pager <up>         previous-line
+bind pager <down>       next-line
+bind pager g            top
+bind pager G            bottom
+
+# View attachments properly.
+bind attach <return> view-mailcap
+
+# Header
+ignore *
+unignore From To Reply-To Cc Bcc Subject Date Organization X-Label X-Mailer User-Agent
+unhdr_order * 
+
+# Pager
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+
+# Show HTML message
+alternative_order text/plain text/enriched text/html
+auto_view text/html
+
+# Set mailcap path
+set mailcap_path = ~/.config/neomutt/mailcap
+
+# Colors
+#
+# GENERAL           FG          BG
+# -----------------------------------------------
+#color error         color228    default
+#color indicator     color231    color241
+#color markers       color210    default
+#color message       default     default
+#color normal        default     default
+#color prompt        default     default
+#color search        color84     default
+#color status        default     color236
+#color tilde         color231    default
+#color tree          color117    default
+
+# INDEX             FG          BG          FLAG
+# -----------------------------------------------
+#color index         color210    default     ~D # deleted messages
+#color index         color84     default     ~F # flagged messages
+#color index         color117    default     ~N # new messages
+#color index         color212    default     ~Q # messages which have been replied to
+#color index         color215    default     ~T # tagged messages
+#color index         color141    default     ~v # messages part of a collapsed thread
+
+# HEADERS           FG          BG          REGEX
+# -----------------------------------------------
+#color hdrdefault    color117    default
+#color header        color231    default     ^Subject:.*
+
+# BODY                  FG              BG          REGEX
+# --------------------------------------------------------------------------------------------------------------------------
+#color attachment        color228        default
+#color body              color231        default     "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+"               # email addresses
+#color body              color228        default     "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+"        # URLs
+#color body              color231        default     "(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$)" # *bold* text
+#color body              color231        default     "(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)"     # _underlined_ text
+#color body              color231        default     "(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)"     # /italic/ text
+#color body              brightyellow    default     "warning(|s)?"
+#color body              brightred       default     "error(|s)?"
+#color body              brightred       default     "fail(ure|ures|ed)?"
+#color body              brightred       default     "alert(|s)?"
+#color quoted            color61         default
+#color quoted1           color117        default
+#color quoted2           color84         default
+#color quoted3           color215        default
+#color quoted4           color212        default
+#color signature         color212        default
+
+# SIDEBAR               FG              BF
+# -----------------------------------------------
+#color sidebar_indicator default         default
+#color sidebar_new       yellow          default

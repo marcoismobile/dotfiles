@@ -1,0 +1,32 @@
+text/html; sensible-browser %s; description=HTML Text; nametemplate=%s.html
+text/html; w3m -T text/html %s; needsterminal; description=HTML Text; nametemplate=%s.html
+text/html; lynx -force_html %s; needsterminal; description=HTML Text; nametemplate=%s.html
+
+# Calendar
+application/ics; cat '%s'; copiousoutput
+
+# GPG
+application/gpg; gpg -d '%s'; copiousoutput
+
+# PDF
+text/pdf; pdftotext -layout '%s' -; copiousoutput
+application/pdf; sensible-browser '%s'
+
+# Images
+image/*; img2sixel '%s'; needsterminal
+
+# CSV
+text/csv; less '%s'; copiousoutput
+text/tab-separated-values; less '%s'; copiousoutput
+
+# Archives
+application/x-bzip; tar --list '%s'; copiousoutput
+application/x-bzip1; tar --list '%s'; copiousoutput
+application/x-bzip-compressed-tar; tar --list '%s'; copiousoutput
+application/x-bzip1-compressed-tar; tar --list '%s'; copiousoutput
+application/x-tar; tar --list '%s'; copiousoutput
+application/x-tarz; tar --list '%s'; copiousoutput
+application/x-7z-compressed-tar; tar --list '%s'; copiousoutput
+application/x-zip; unzip -l '%s'; copiousoutput
+application/x-zip-compressed; unzip -l '%s'; copiousoutput
+application/zip; unzip -l '%s'; copiousoutput
