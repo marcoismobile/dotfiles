@@ -18,14 +18,13 @@ unset move
 unset confirmappend
 set pipe_decode
 set thorough_search
-set editor = 'vim'
 set include = yes
 set charset = 'utf-8'
 set fast_reply
 set smart_wrap
 set net_inc = 10
 set sort_alias = alias
-set reverse_alias = yes
+set reverse_alias
 
 # Status bar
 set status_chars  = " *%A"
@@ -56,7 +55,7 @@ bind pager <up>         previous-line
 bind pager <down>       next-line
 bind pager g            top
 bind pager G            bottom
-macro index A           "<save-message>=INBOX.Archive\n<sync-mailbox>\n" "Archived message"
+macro index A           "<save-message>=INBOX.Archive\n<sync-mailbox>\n" "Archive message"
 
 # View attachments properly.
 bind attach <return> view-mailcap
@@ -81,6 +80,11 @@ auto_view text/html
 
 # Set mailcap path
 set mailcap_path = ~/.config/neomutt/mailcap
+
+# Abook
+set query_command= "abook --mutt-query '%s'"
+macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+bind editor        <Tab> complete-query
 
 # Theme
 source "theme.muttrc"
