@@ -56,6 +56,7 @@ bind pager <up>         previous-line
 bind pager <down>       next-line
 bind pager g            top
 bind pager G            bottom
+macro index A           "<save-message>=INBOX.Archive\n<sync-mailbox>\n" "Archived message"
 
 # View attachments properly.
 bind attach <return> view-mailcap
