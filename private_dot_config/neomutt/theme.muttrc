@@ -1,0 +1,47 @@
+# vim: filetype=muttrc
+
+# GENERAL           STYLE       FG              BG
+# -------------------------------------------------------------------------------------------------
+color attachment    bold        color228        default
+color error                     color196        default
+color indicator     bold        color231        color241
+color markers       bold        color210        default
+color message                   default         default
+color normal                    default         default
+color prompt                    default         default
+color search                    color84         default
+color status        bold        default         color236
+color tilde                     color231        default
+color tree          bold        color117        default
+
+# INDEX             STYLE       FG              BG          FLAG
+# -------------------------------------------------------------------------------------------------
+color index                     color210        default     ~D # deleted messages
+color index         bold        color84         default     ~F # flagged messages
+color index         bold        color117        default     ~N # new messages
+color index                     color212        default     ~Q # replied to
+color index                     color215        default     ~T # tagged messages
+color index                     color141        default     ~v # collapsed thread
+
+# HEADERS           STYLE       FG              BG          REGEX
+# -------------------------------------------------------------------------------------------------
+color hdrdefault                color117        default
+color header                    color231        default     ^Subject:.*
+
+# BODY              STYLE       FG              BG          REGEX
+# -------------------------------------------------------------------------------------------------
+color body                      color231        default     "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+"               # email addresses
+color body                      color228        default     "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+"        # URLs
+color body                      color231        default     "(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$)" # *bold* text
+color body                      color231        default     "(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)"     # _underlined_ text
+color body                      color231        default     "(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)"     # /italic/ text
+color body                      brightyellow    default     "warning(|s)?"
+color body                      brightred       default     "error(|s)?"
+color body                      brightred       default     "fail(ure|ures|ed)?"
+color body                      brightred       default     "alert(|s)?"
+color quoted                    color61         default
+color quoted1                   color117        default
+color quoted2                   color84         default
+color quoted3                   color215        default
+color quoted4                   color212        default
+color signature                 color212        default
