@@ -2,7 +2,7 @@
 let plug_path = (has('nvim') ? stdpath('data') . '/site' : '~/.vim') . '/autoload/plug.vim'
 let plug_install = 0
 if empty(glob(plug_path))
-  silent execute '!curl -fLo '.plug_path.' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  silent execute '!curl -fLo '.plug_path.' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/"plug.vim'
   execute 'source ' . fnameescape(plug_path)
   let plug_install = 1
 endif
@@ -12,7 +12,7 @@ let lsp_enabled = has('nvim') && executable('python3')
 
 call plug#begin()
 " Theme
-Plug 'joshdick/onedark.vim'
+Plug 'nanotech/jellybeans.vim'
 " Lightline
 Plug 'itchyny/lightline.vim'
 " CtrlP (File browser)
@@ -110,14 +110,12 @@ noremap <C-w>- :split<CR>
 noremap <C-w>\ :vsplit<CR>
 
 " Theme
-let g:onedark_termcolors = 16
-let g:onedark_terminal_italics = 1
-let g:onedark_color_overrides = {
-    \ "background": { "gui": "#000000" }
+let g:jellybeans_use_term_italics = 1
+let g:jellybeans_overrides = {
+    \ 'background': { 'guibg': '#000000' }
 \ }
-
+silent! colorscheme jellybeans
 "exec 'source ' . stdpath('config') . '/theme.vim'
-silent! colorscheme onedark
 
 " Lightline
 let g:lightline = {
