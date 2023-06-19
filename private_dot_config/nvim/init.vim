@@ -2,7 +2,7 @@
 let plug_path = (has('nvim') ? stdpath('data') . '/site' : '~/.vim') . '/autoload/plug.vim'
 let plug_install = 0
 if empty(glob(plug_path))
-  silent execute '!curl -fLo '.plug_path.' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/"plug.vim'
+  silent execute '!curl -fLo '.plug_path.' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   execute 'source ' . fnameescape(plug_path)
   let plug_install = 1
 endif
