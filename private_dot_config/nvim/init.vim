@@ -31,13 +31,13 @@ Plug 'preservim/nerdcommenter'
 if lsp_enabled
   " LSP
   Plug 'neovim/nvim-lspconfig'
-  if has('nvim-0.8')
-    " TreeSitter
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  endif
   " COQ
   Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
   Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+  " TreeSitter
+  if has('nvim-0.8')
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  endif
 endif
 
 call plug#end()
@@ -148,18 +148,6 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(pyc|swp|vim)$',
 \ }
 
-" Treesitter
-if has('nvim-0.8')
-lua <<EOF
-require 'nvim-treesitter.configs'.setup {
-  ensure_installed = { "bash", "c", "lua", "python", "vim", "vimdoc", "query" },
-  highlight = {
-    enable = true,
-  },
-}
-EOF
-endif
-
 " Nvim-lspconfig and coq_nvim
 if lsp_enabled
 lua <<EOF
@@ -205,6 +193,18 @@ for _, server in pairs(servers) do
   }))
 end
 EOF
+
+" Treesitter
+if has('nvim-0.8')
+lua <<EOF
+require 'nvim-treesitter.configs'.setup {
+  ensure_installed = { "bash", "c", "lua", "python", "vim", "vimdoc", "query" },
+  highlight = {
+    enable = true,
+  },
+}
+EOF
+endif
 
 " Start COQ
 autocmd VimEnter * COQnow --shut-up
