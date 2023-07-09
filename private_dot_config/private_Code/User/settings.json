@@ -1,0 +1,24 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "window.menuBarVisibility": "toggle",
+    "python.pythonPath": "/usr/bin/python3",
+    "editor.minimap.enabled": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.showStartPage": false,
+    "python.linting.flake8Enabled": true,
+    "window.zoomLevel": 0,
+    "update.mode": "none",
+    "update.showReleaseNotes": false,
+    "workbench.colorCustomizations": {
+        "editorBracketMatch.border": "#ff0000"
+    },
+    "python.languageServer": "Pylance",
+    "workbench.colorTheme": "Monokai Dimmed",
+    "editor.semanticHighlighting.enabled": false,
+    "extensions.ignoreRecommendations": true,
+    "git.openRepositoryInParentFolders": "always"
+}
