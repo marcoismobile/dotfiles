@@ -11,6 +11,7 @@ chezmoi.key.age
 .config/i3status
 .config/mutt
 .config/sway
+.gnupg
 {{- end }}
 {{- if not .mobile }}
 .termux
