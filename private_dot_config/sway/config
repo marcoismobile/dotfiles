@@ -78,15 +78,9 @@ bindswitch --reload --locked lid:on output $primary disable
 bindswitch --reload --locked lid:off output $primary enable
 
 #
-# External monitor
-output "DP-1" {
-    scale 1.25
-}
-
-#
-# Docking station
-output "HDMI1" {
-    scale 1.0
+# Desktop
+output "DP-3" {
+    scale 1.5
 }
 
 #
@@ -96,8 +90,7 @@ output "HEADLESS-1" {
     mode 1920x1200
 }
 exec swaymsg create_output HEADLESS-1
-# Start wayvnc
-# exec wayvnc --output=HEADLESS-1 --max-fps=30 127.0.0.1 5900 &
+exec XKB_DEFAULT_OPTIONS="altwin:swap_lalt_lwin" wayvnc --output=HEADLESS-1 --max-fps=30 127.0.0.1 5900 &
 
 ## Key bindings
 #
