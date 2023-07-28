@@ -182,7 +182,6 @@ local servers = {
   'bashls',
   'dockerls',
   'pyright',
-  'terraformls',
   'yamlls',
 }
 local lsp = require('lspconfig')
