@@ -53,11 +53,6 @@ seat * hide_cursor 5000
 #
 # [swaymsg -t get_inputs]
 #
-# Keyboard
-#input type:keyboard {
-#    xkb_layout us_custom
-#}
-#
 # Touchpad
 input type:touchpad {
     tap enabled
@@ -85,12 +80,13 @@ output "DP-3" {
 
 #
 # HEADLESS VNC
-output "HEADLESS-1" {
+set $headless "HEADLESS-1"
+output $headless {
     scale 1.0
     mode 1920x1200
 }
-exec swaymsg create_output HEADLESS-1
-exec XKB_DEFAULT_OPTIONS="altwin:swap_lalt_lwin" wayvnc --output=HEADLESS-1 --max-fps=30 127.0.0.1 5900 &
+exec swaymsg create_output $headless
+exec XKB_DEFAULT_OPTIONS="altwin:swap_lalt_lwin" wayvnc --output=$headless 127.0.0.1 5900
 
 ## Key bindings
 #
@@ -251,5 +247,4 @@ exec swayidle -w \
 
 ## DBUS
 #
-#exec systemctl --user import-environment DBUS_SESSION_BUS_ADDRESS WAYLAND_DISPLAY
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY
