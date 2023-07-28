@@ -17,6 +17,3 @@ chezmoi.key.age
 .termux
 .hushlogin
 {{- end }}
-{{- if not .home }}
-vnc_server.sh
-{{- end }}
