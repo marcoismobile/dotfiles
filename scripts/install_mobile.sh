@@ -1,0 +1,49 @@
+#!/bin/bash
+#
+adb shell <<EOF
+
+# Disable packages
+pm disable-user android.autoinstalls.config.oneplus
+pm disable-user com.android.apps.tag
+pm disable-user com.android.companiondevicemanager
+pm disable-user com.android.email.partnerprovider
+pm disable-user com.android.providers.downloads.ui
+pm disable-user com.android.remoteprovisioner
+pm disable-user com.android.simappdialog
+pm disable-user com.android.traceur
+pm disable-user com.coloros.assistantscreen
+pm disable-user com.coloros.childrenspace
+pm disable-user com.coloros.operationManual
+pm disable-user com.coloros.scenemode
+pm disable-user com.coloros.smartsidebar
+pm disable-user com.coloros.systemclone
+pm disable-user com.coloros.weather.service
+pm disable-user com.google.android.apps.restore
+pm disable-user com.google.android.apps.walletnfcrel
+pm disable-user com.google.android.as.oss
+pm disable-user com.google.android.gms.supervision
+pm disable-user com.google.android.ims
+pm disable-user com.google.android.partnersetup
+pm disable-user com.google.ar.lens
+pm disable-user com.oneplus.filemanager
+pm disable-user com.oneplus.membership
+pm disable-user com.oplus.apprecover
+pm disable-user com.oplus.cast
+pm disable-user com.oplus.cosa
+pm disable-user com.oplus.customize.coreapp
+pm disable-user com.oplus.games
+pm disable-user com.oplus.linker
+pm disable-user com.oplus.locationproxy
+pm disable-user com.oplus.melody
+pm disable-user com.oplus.multiapp
+pm disable-user com.oplus.ocs
+pm disable-user com.oplus.portrait
+pm disable-user com.oplus.screenrecorder
+pm disable-user com.oplus.statistics.rom
+pm disable-user com.oplus.synergy
+pm disable-user com.oplus.viewtalk
+pm disable-user com.oppo.quicksearchbox
+pm disable-user com.quicinc.voice.activation
+pm disable-user net.oneplus.wallpaperresources
+pm disable-user net.oneplus.weather
+EOF
