@@ -6,12 +6,15 @@ $APT update
 $APT upgrade
 
 # Install packages
-$APT install age curl dnsutils git gnupg gzip inetutils mosh net-tools \
-    openssh pinentry tmux vim zsh
+$APT install age curl dnsutils git gzip inetutils mosh net-tools \
+    openssh tmux neovim zsh
 
 # Cleanup
 $APT autoremove
 $APT autoclean
+
+# Generate SSH key
+ssh-keygen -q -t ed25519 -f '~/.ssh/id_ed25519' -N ''
 
 # Enable storage
 [ ! -d "$HOME/storage" ] && termux-setup-storage
