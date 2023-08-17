@@ -14,7 +14,7 @@ $APT autoremove
 $APT autoclean
 
 # Generate SSH key
-ssh-keygen -q -t ed25519 -f '~/.ssh/id_ed25519' -N ''
+ssh-keygen -q -t ed25519 -f "$HOME/.ssh/id_ed25519" -N ""
 
 # Enable storage
 [ ! -d "$HOME/storage" ] && termux-setup-storage
