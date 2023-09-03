@@ -10,7 +10,7 @@ general {
 order += "read_file status"
 order += "load"
 order += "memory"
-order += "cpu_temperature 9"
+order += "cpu_temperature 1"
 order += "disk /"
 order += "ethernet _first_"
 order += "wireless _first_"
@@ -39,7 +39,7 @@ memory {
     threshold_critical = "10%"
 }
 
-cpu_temperature 9 {
+cpu_temperature 1 {
     format = "T: %degrees°C"
     max_threshold = 60
 }
