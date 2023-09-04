@@ -49,44 +49,22 @@ focus_follows_mouse no
 # Hide mouse pointer after timeout
 seat * hide_cursor 5000
 
-## Inputs
-#
-# [swaymsg -t get_inputs]
-#
-# Touchpad
-input type:touchpad {
-    tap enabled
-    natural_scroll disabled
-}
-
 ## Outputs
 #
 # [swaymsg -t get_outputs]
 #
 # Primary screen
-set $primary "eDP-1"
-output $primary {
-    scale 1.5
-}
-# Clamshell mode
-bindswitch --reload --locked lid:on output $primary disable
-bindswitch --reload --locked lid:off output $primary enable
-
-#
-# Desktop
-output "DP-3" {
+output * {
     scale 1.5
 }
 
 #
 # HEADLESS VNC
-set $headless "HEADLESS-1"
-output $headless {
+output "HEADLESS-1" {
     scale 1.0
     mode 1920x1200
 }
-exec swaymsg create_output $headless
-exec XKB_DEFAULT_OPTIONS="altwin:swap_lalt_lwin" wayvnc --output=$headless 127.0.0.1 5900
+exec swaymsg create_output "HEADLESS-1"
 
 ## Key bindings
 #
