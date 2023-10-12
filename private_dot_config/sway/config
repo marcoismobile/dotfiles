@@ -163,9 +163,10 @@ mode $mode_resize {
 bindsym $mod+r mode $mode_resize
 #
 # System mode
-set $mode_system "SYSTEM: [l]ock | [e]xit | [s]uspend | [h]ibernate | [r]eboot | [p]oweroff"
+set $mode_system "SYSTEM: [l]ock | [m]onitor | [e]xit | [s]uspend | [h]ibernate | [r]eboot | [p]oweroff"
 mode $mode_system {
     bindsym l exec $lock, mode "default"
+    bindsym m exec swaymsg output "*" enable
     bindsym e exec swaymsg exit, mode "default"
     bindsym s exec $lock && systemctl suspend, mode "default"
     bindsym h exec $lock && systemctl hibernate, mode "default"
@@ -222,8 +223,8 @@ for_window [class="^.*"] inhibit_idle fullscreen
 #
 exec swayidle -w \
     timeout 600 '$lock' \
-    timeout 1800 'swaymsg "output * power off"' \
-    resume 'swaymsg "output * power on"' \
+    timeout 1800 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
     before-sleep '$lock'
 
 ## DBUS
