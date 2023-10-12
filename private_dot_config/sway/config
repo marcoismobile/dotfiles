@@ -166,7 +166,7 @@ bindsym $mod+r mode $mode_resize
 set $mode_system "SYSTEM: [l]ock | [m]onitor | [e]xit | [s]uspend | [h]ibernate | [r]eboot | [p]oweroff"
 mode $mode_system {
     bindsym l exec $lock, mode "default"
-    bindsym m exec swaymsg output "*" enable
+    bindsym m exec swaymsg output "*" enable, mode "default"
     bindsym e exec swaymsg exit, mode "default"
     bindsym s exec $lock && systemctl suspend, mode "default"
     bindsym h exec $lock && systemctl hibernate, mode "default"
