@@ -3,7 +3,7 @@
 ###############
 
 # Disable Xwayland
-xwayland disable
+#xwayland disable
 
 ## Variables
 #
@@ -72,14 +72,11 @@ exec swaymsg create_output "HEADLESS-1"
 bindsym $mod+d exec foot -a foot-menu bash -c "compgen -c | sort -u | fzf | xargs -r swaymsg -t command exec"
 for_window [app_id="foot-menu"] floating enable, resize set height 250 px, resize set width 800 px, move position center
 #
-# Start a terminal
+# Start terminal
 bindsym $mod+Return exec foot
 #
-# Start internet browser
+# Start browser
 bindsym $mod+i exec $BROWSER
-#
-# Start VSCode
-bindsym $mod+c exec code --ozone-platform-hint=auto
 #
 # Kill focused window
 bindsym $mod+Shift+q kill
