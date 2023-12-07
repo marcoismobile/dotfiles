@@ -3,12 +3,6 @@ skip_global_compinit=1
 # Set default editor
 export EDITOR=nvim
 export VISUAL=nvim
-# Set default browser
-{{ if .work -}}
-export BROWSER=chromium
-{{- else -}}
-export BROWSER=firefox
-{{- end }}
 {{ if not .mobile -}}
 # Set cache to RAM disk
 export XDG_CACHE_HOME=/dev/shm
