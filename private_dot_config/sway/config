@@ -75,10 +75,7 @@ bindsym $mod+d exec foot -a foot-menu bash -c "compgen -c | sort -u | fzf | xarg
 for_window [app_id="foot-menu"] floating enable, resize set height 250 px, resize set width 800 px, move position center
 #
 # Start terminal
-bindsym $mod+Return exec x-terminal-emulator
-#
-# Start browser
-bindsym $mod+i exec x-www-browser
+bindsym $mod+Return exec foot
 #
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -106,11 +103,6 @@ bindsym $mod+minus split v
 #
 # Fullscreen mode
 bindsym $mod+f fullscreen toggle
-#
-# Change container layout
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
 #
 # Toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
