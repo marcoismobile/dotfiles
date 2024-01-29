@@ -62,7 +62,7 @@ output * {
 # HEADLESS VNC
 output "HEADLESS-1" {
     scale 1.0
-    mode 1920x1200
+    mode 1920x1080
 }
 exec swaymsg create_output "HEADLESS-1"
 # Start WayVNC
