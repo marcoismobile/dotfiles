@@ -7,7 +7,7 @@ $APT upgrade
 
 # Install packages
 $APT install age curl dnsutils git gzip inetutils mosh net-tools \
-    openssh tmux neovim zsh
+    openssh rsync tmux neovim zsh
 
 # Cleanup
 $APT autoremove
