@@ -1,12 +1,6 @@
-# Account switch bindings
-macro index <f2> '<sync-mailbox><enter-command>source "pass work/mutt.account |"<enter><change-folder>!<enter>'
-macro index <f3> '<sync-mailbox><enter-command>source "pass marco/mutt.account |"<enter><change-folder>!<enter>'
-
 # Accounts
-#source "pass marco/mutt.account |"
-#folder-hook $folder "source 'pass marco/mutt.account |'"
-source "pass work/mutt.account |"
-#folder-hook $folder "source 'pass work/mutt.account |'"
+source "pass marco/mutt.account |"
+folder-hook $folder "source 'pass marco/mutt.account |'"
 
 # General
 unset help
