@@ -3,9 +3,6 @@ chezmoi.key.age
 {{- if .server }}
 .ssh
 {{- end }}
-{{- if .work }}
-.ssh/known_hosts_managed
-{{- end }}
 {{- if (or .mobile .server) }}
 .config/foot
 .config/i3status

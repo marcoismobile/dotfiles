@@ -1,5 +1,0 @@
-APT="apt --quiet --assume-yes --no-install-recommends"
-
-# Update repositories
-sudo $APT update
-sudo $APT upgrade
