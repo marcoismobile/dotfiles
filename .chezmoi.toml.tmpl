@@ -1,20 +1,14 @@
 {{- $home := false -}}
-{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu") (or (eq .chezmoi.hostname "hyperion") (eq .chezmoi.hostname "surface-pro"))) -}}
-{{-   $home = true -}}
-{{- end -}}
-
-{{- $work := false -}}
-{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.hostname "NL1-LIN-002")) -}}
-{{-   $work = true -}}
-{{- end -}}
-
 {{- $server := false -}}
-{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu") (ne .chezmoi.hostname "hyperion") (ne .chezmoi.hostname "surface-pro")) -}}
-{{-   $server = true -}}
-{{- end -}}
-
 {{- $mobile := false -}}
-{{- if (eq .chezmoi.os "android") -}}
+
+{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu")) -}}
+{{-   if (or (eq .chezmoi.hostname "hyperion") (eq .chezmoi.hostname "prometheus")) -}}
+{{-     $home = true -}}
+{{-   else -}}
+{{-     $server = true -}}
+{{-   end -}}
+{{- else if (eq .chezmoi.os "android") -}}
 {{-   $mobile = true -}}
 {{- end -}}
 
@@ -35,6 +29,5 @@ encryption = "age"
     name = "Marco"
     email = "nobody@home.now"
     home = {{ $home }}
-    work = {{ $work }}
     server = {{ $server }}
     mobile = {{ $mobile }}
