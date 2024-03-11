@@ -13,7 +13,7 @@
 {{-   $mobile = true -}}
 {{- end -}}
 
-{{- if (contains .chezmoi.kernel.osrelease "WSL2") -}}
+{{- if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
 {{-   $wsl = true -}}
 {{- end -}}
 
