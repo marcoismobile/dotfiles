@@ -1,24 +1,23 @@
 {
-    "workbench.startupEditor": "newUntitledFile",
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
+    "telemetry.telemetryLevel": "off",
     "window.menuBarVisibility": "toggle",
-    "python.pythonPath": "/usr/bin/python3",
-    "editor.minimap.enabled": false,
-    "workbench.iconTheme": "material-icon-theme",
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "python.showStartPage": false,
-    "python.linting.flake8Enabled": true,
     "window.zoomLevel": 0,
-    "update.mode": "none",
-    "update.showReleaseNotes": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Monokai Dimmed",
     "workbench.colorCustomizations": {
         "editorBracketMatch.border": "#ff0000"
     },
-    "python.languageServer": "Pylance",
-    "workbench.colorTheme": "Monokai Dimmed",
+    "editor.minimap.enabled": false,
     "editor.semanticHighlighting.enabled": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "update.mode": "none",
+    "update.showReleaseNotes": false,
     "extensions.ignoreRecommendations": true,
-    "git.openRepositoryInParentFolders": "always"
+    "git.openRepositoryInParentFolders": "always",
+    "python.languageServer": "Pylance",
+    "flake8.args": [
+        "--max-line-length=120"
+    ]
 }
