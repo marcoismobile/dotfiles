@@ -1,5 +1,4 @@
 {{- $home := false -}}
-{{- $wsl := false -}}
 {{- $server := false -}}
 {{- $mobile := false -}}
 
@@ -11,10 +10,6 @@
 {{-   end -}}
 {{- else if (eq .chezmoi.os "android") -}}
 {{-   $mobile = true -}}
-{{- end -}}
-
-{{- if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
-{{-   $wsl = true -}}
 {{- end -}}
 
 encryption = "age"
@@ -34,6 +29,5 @@ encryption = "age"
     name = "Marco"
     email = "nobody@home.now"
     home = {{ $home }}
-    wsl = {{ $wsl }}
     server = {{ $server }}
     mobile = {{ $mobile }}
