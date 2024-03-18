@@ -130,11 +130,10 @@ fi
 
 # Update GPG variables
 if command -v gpgconf >/dev/null; then
-    # Clear DBUS ENV on SSH session to get PINENTRY
+    # Unset DBUS on SSH session to get Pinentry on console
     if [ -n "$SSH_CLIENT" ]; then
-        export DBUS_SESSION_BUS_ADDRESS=/dev/null
+        unset DBUS_SESSION_BUS_ADDRESS
     fi
-
     export GPG_TTY=$TTY
     gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
     export GPG_EXTRA_SOCK="$(gpgconf --list-dirs agent-extra-socket)"
