@@ -132,7 +132,7 @@ fi
 if command -v gpgconf >/dev/null; then
     # Unset DBUS on SSH session to get Pinentry on console
     if [ -n "$SSH_CLIENT" ]; then
-        unset DBUS_SESSION_BUS_ADDRESS
+        export DBUS_SESSION_BUS_ADDRESS=/dev/null
     fi
     export GPG_TTY=$TTY
     gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
