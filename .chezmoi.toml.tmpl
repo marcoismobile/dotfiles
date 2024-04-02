@@ -1,10 +1,13 @@
 {{- $home := false -}}
+{{- $wsl := false -}}
 {{- $server := false -}}
 {{- $mobile := false -}}
 
 {{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu")) -}}
-{{-   if (or (eq .chezmoi.hostname "hyperion") (eq .chezmoi.hostname "prometheus")) -}}
+{{-   if (eq .chezmoi.hostname "hyperion") -}}
 {{-     $home = true -}}
+{{-   else if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+{{-     $wsl = true -}}
 {{-   else -}}
 {{-     $server = true -}}
 {{-   end -}}
@@ -29,5 +32,6 @@ encryption = "age"
     name = "Marco"
     email = "nobody@home.now"
     home = {{ $home }}
+    wsl = {{ wsl }}
     server = {{ $server }}
     mobile = {{ $mobile }}
