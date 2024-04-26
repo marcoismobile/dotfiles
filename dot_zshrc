@@ -67,7 +67,7 @@ alias rip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias sd='shred -u'
 alias sz='sudo HOME=$HOME /bin/zsh'
 alias sshz=sshz
-alias t='$EDITOR ~/todo.md'
+alias t='v ~/todo.md'
 alias tm='tmux attach -t $(hostname) || tmux new -s $(hostname)'
 alias v='$EDITOR'
 
