@@ -42,6 +42,14 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
 
+# Export Editor
+if command -v nvim >/dev/null; then
+    export EDITOR='nvim'
+else
+    export EDITOR='vim'
+fi
+export VISUAL=$EDITOR
+
 # Aliases
 alias 1='cd -'
 alias 2='cd -2'
@@ -69,13 +77,9 @@ alias rip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias sd='shred -u'
 alias sz='sudo HOME=$HOME /bin/zsh'
 alias sshz=sshz
-alias t='v ~/todo.md'
+alias t='$EDITOR ~/todo.md'
 alias tm='tmux attach -t $(hostname) || tmux new -s $(hostname)'
-if command -v nvim >/dev/null; then
-    alias v='nvim'
-else
-    alias v='vim'
-fi
+alias v='$EDITOR'
 
 # Use zshrc.remote config on remote machines
 function sshz() {
