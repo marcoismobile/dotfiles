@@ -59,7 +59,9 @@ alias g='git'
 alias gpgl='gpg --list-only -v -d'
 alias j='journalctl -aq -u'
 alias jcf='journalctl -aq --no-pager --output=cat -n 25 -f -u'
-alias ls='lsd'
+if command -v lsd >/dev/null; then
+    alias ls='lsd'
+fi
 alias m='neomutt'
 alias otp2secret='zbarimg -q --raw'
 alias otp2image='qrencode -t ansiutf8'
@@ -69,7 +71,11 @@ alias sz='sudo HOME=$HOME /bin/zsh'
 alias sshz=sshz
 alias t='v ~/todo.md'
 alias tm='tmux attach -t $(hostname) || tmux new -s $(hostname)'
-alias v='$EDITOR'
+if command -v nvim >/dev/null; then
+    alias v='nvim'
+else
+    alias v='vim'
+fi
 
 # Use zshrc.remote config on remote machines
 function sshz() {
