@@ -46,7 +46,7 @@ setopt pushdminus
 export XDG_CACHE_HOME="/dev/shm"
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
-export PASSWORD_STORE_DIR="${HOME}/repositories/password-store"
+
 # Editor
 if command -v nvim >/dev/null; then
     export EDITOR='nvim'
@@ -54,6 +54,12 @@ else
     export EDITOR='vim'
 fi
 export VISUAL="${EDITOR}"
+
+# Pass
+if [[ -d "${HOME}/repositories/password-store" ]]; then
+    export PASSWORD_STORE_DIR="${HOME}/repositories/password-store"
+    alias p='pass'
+fi
 
 # Aliases
 alias 1='cd -'
