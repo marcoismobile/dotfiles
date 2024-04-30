@@ -48,7 +48,8 @@ if command -v nvim >/dev/null; then
 else
     export EDITOR='vim'
 fi
-export VISUAL=$EDITOR
+export VISUAL="$EDITOR"
+export PASSWORD_STORE_DIR='~/repositories/password-store'
 
 # Aliases
 alias 1='cd -'
@@ -79,7 +80,7 @@ alias sz='sudo HOME=$HOME /bin/zsh'
 alias sshz=sshz
 alias t='$EDITOR ~/todo.md'
 alias tm='tmux attach -t $(hostname) || tmux new -s $(hostname)'
-alias v='$EDITOR'
+alias v="${EDITOR}"
 
 # Use zshrc.remote config on remote machines
 function sshz() {
