@@ -127,7 +127,7 @@ else
 fi
 
 # Update GPG variables
-if [[ -f ~/gnupg/gpg-agent.conf ]] && command -v gpgconf >/dev/null; then
+if [[ -f ~/.gnupg/gpg-agent.conf ]] && command -v gpgconf >/dev/null; then
     # Unset DBUS on SSH session to get Pinentry on console
     if [ -n "$SSH_CLIENT" ]; then
         export DBUS_SESSION_BUS_ADDRESS=/dev/null
