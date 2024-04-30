@@ -42,17 +42,18 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
 
-# Export Editor
+# Exports
+export XDG_CACHE_HOME="/dev/shm"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export PASSWORD_STORE_DIR="${HOME}/repositories/password-store"
+# Editor
 if command -v nvim >/dev/null; then
     export EDITOR='nvim'
 else
     export EDITOR='vim'
 fi
 export VISUAL="${EDITOR}"
-export XDG_CACHE_HOME="/dev/shm"
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_DATA_HOME="${HOME}/.local/share"
-export PASSWORD_STORE_DIR="${HOME}/repositories/password-store"
 
 # Aliases
 alias 1='cd -'
