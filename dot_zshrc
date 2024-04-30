@@ -127,7 +127,7 @@ else
 fi
 
 # Update GPG variables
-if command -v gpgconf >/dev/null; then
+if [[ -f ~/gnupg/gpg-agent.conf ]] && command -v gpgconf >/dev/null; then
     # Unset DBUS on SSH session to get Pinentry on console
     if [ -n "$SSH_CLIENT" ]; then
         export DBUS_SESSION_BUS_ADDRESS=/dev/null
@@ -137,6 +137,3 @@ if command -v gpgconf >/dev/null; then
     export GPG_EXTRA_SOCK="$(gpgconf --list-dirs agent-extra-socket)"
     export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
-
-# Include local zshrc file if exists
-[[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
