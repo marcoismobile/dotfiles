@@ -48,7 +48,7 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
 
 # Editor
-if command -v nvim >/dev/null; then
+if (( $+commands[nvim] )); then
     export EDITOR='nvim'
 else
     export EDITOR='vim'
@@ -78,7 +78,7 @@ alias g='git'
 alias gpgl='gpg --list-only -v -d'
 alias j='journalctl -aq -u'
 alias jcf='journalctl -aq --no-pager --output=cat -n 25 -f -u'
-if command -v lsd >/dev/null; then
+if (( $+commands[lsd] )); then
     alias ls='lsd'
 fi
 alias m='neomutt'
@@ -148,7 +148,7 @@ else
 fi
 
 # Update GPG variables
-if [[ -f ~/.gnupg/gpg-agent.conf ]] && command -v gpgconf >/dev/null; then
+if [[ -f ~/.gnupg/gpg-agent.conf ]] && (( $+commands[gpgconf] )); then
     # Unset DBUS on SSH session to get Pinentry on console
     if [ -n "$SSH_CLIENT" ]; then
         export DBUS_SESSION_BUS_ADDRESS=/dev/null
