@@ -48,11 +48,7 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
 
 # Editor
-if (( $+commands[nvim] )); then
-    export EDITOR='nvim'
-else
-    export EDITOR='vim'
-fi
+(( $+commands[nvim] )) && export EDITOR='nvim' || export EDITOR='vim'
 export VISUAL="${EDITOR}"
 
 # Pass
@@ -72,28 +68,22 @@ alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
 alias d='dirs -v | head -10'
-alias f=(( $+commands[rg] )) ? 'rg -i' : 'grep -i'
+(( $+commands[rg] )) && alias f='rg -i' || alias f='grep -i'
 alias ff='find . -name'
-if (( $+commands[gpg] )); then
-    alias g='git'
-fi
-alias gpgl='gpg --list-only -v -d'
+(( $+commands[git] )) && alias g='git'
+(( $+commands[gpg] )) && alias gpgl='gpg --list-only -v -d'
 alias j='journalctl -aq -u'
 alias jcf='journalctl -aq --no-pager --output=cat -n 25 -f -u'
-if (( $+commands[lsd] )); then
-    alias ls='lsd'
-fi
-if (( $+commands[neomutt] )); then
-    alias m='neomutt'
-fi
-alias otp2secret='zbarimg -q --raw'
-alias otp2image='qrencode -t ansiutf8'
+(( $+commands[lsd] )) && alias ls='lsd'
+(( $+commands[neomutt] )) && alias m='neomutt'
+(( $+commands[zbarimg] )) && alias otp2secret='zbarimg -q --raw'
+(( $+commands[qrencode] )) && alias otp2image='qrencode -t ansiutf8'
 alias rip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias sd='shred -u'
+(( $+commands[shred] )) && alias sd='shred -u'
 alias sz='sudo HOME=$HOME /bin/zsh'
 alias sshz=sshz
 alias t="${EDITOR} ~/todo.md"
-alias tm='tmux attach -t $(hostname) || tmux new -s $(hostname)'
+(( $+commands[tmux] )) && alias tm='tmux attach -t $(hostname) || tmux new -s $(hostname)'
 alias v="${EDITOR}"
 
 # Use zshrc.remote config on remote machines
