@@ -1,6 +1,5 @@
 # Set APT defaults
-export DEBIAN_FRONTEND=noninteractive
-APT="apt-get --quiet --assume-yes --no-install-recommends"
+APT="apt -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' --quiet --assume-yes --no-install-recommends"
 
 # Change Mirror
 echo "deb https://ftp.fau.de/termux/termux-main stable main" > "$PREFIX/etc/apt/sources.list"
