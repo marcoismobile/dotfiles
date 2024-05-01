@@ -1,5 +1,12 @@
 # Set APT defaults
-APT="apt -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' --quiet --assume-yes --no-install-recommends"
+cat <<EOF > "$PREFIX/etc/apt/apt.conf.d/local"
+Dpkg::Options {
+   "--force-confdef";
+   "--force-confold";
+}
+EOF
+
+APT="apt --quiet --assume-yes --no-install-recommends"
 
 # Change Mirror
 echo "deb https://ftp.fau.de/termux/termux-main stable main" > "$PREFIX/etc/apt/sources.list"
