@@ -6,12 +6,15 @@ $APT update
 $APT upgrade
 
 # Install packages
-$APT install age curl dnsutils git gzip inetutils lsd mosh net-tools \
-    openssh rsync tmux neovim zsh
+$APT install age cloudflared curl dnsutils git gzip inetutils \
+    lsd mosh net-tools openssh rsync tmux neovim zsh
 
 # Cleanup
 $APT autoremove
 $APT autoclean
+
+# Change Shell
+chsh -s zsh
 
 # Generate SSH key
 [ ! -f "$HOME/.ssh/id_ed25519" ] && ssh-keygen -q -t ed25519 -f "$HOME/.ssh/id_ed25519" -N ""
