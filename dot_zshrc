@@ -74,14 +74,18 @@ alias 9='cd -9'
 alias d='dirs -v | head -10'
 alias f='rg -i'
 alias ff='find . -name'
-alias g='git'
+if (( $+commands[gpg] )); then
+    alias g='git'
+fi
 alias gpgl='gpg --list-only -v -d'
 alias j='journalctl -aq -u'
 alias jcf='journalctl -aq --no-pager --output=cat -n 25 -f -u'
 if (( $+commands[lsd] )); then
     alias ls='lsd'
 fi
-alias m='neomutt'
+if (( $+commands[neomutt] )); then
+    alias m='neomutt'
+fi
 alias otp2secret='zbarimg -q --raw'
 alias otp2image='qrencode -t ansiutf8'
 alias rip='dig +short myip.opendns.com @resolver1.opendns.com'
