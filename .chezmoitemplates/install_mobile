@@ -2,7 +2,7 @@
 APT="apt --quiet --assume-yes --no-install-recommends"
 
 # Change Mirrors
-pkg install termux-tools
+$APT install termux-tools
 ln -s "$PREFIX/etc/termux/mirrors/europe" "$PREFIX/etc/termux/chosen_mirrors"
 pkg --check-mirror update
 
@@ -18,7 +18,7 @@ $APT autoremove
 $APT autoclean
 
 # Copy Nerd Font
-cp "$HOME/.fonts/MesloLGS NF Regular.ttf" "$HOME/.termux/font.ttf"
+cp "$HOME/.fonts/MesloLGS\ NF\ Regular.ttf" "$HOME/.termux/font.ttf"
 
 # Change Shell
 chsh -s zsh
