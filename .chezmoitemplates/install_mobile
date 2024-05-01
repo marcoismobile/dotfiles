@@ -2,7 +2,7 @@
 APT="apt --quiet --assume-yes --no-install-recommends"
 
 # Change Mirrors
-$APT install termux-tools
+pkg install termux-tools
 ln -s "$PREFIX/etc/termux/mirrors/europe" "$PREFIX/etc/termux/chosen_mirrors"
 pkg --check-mirror update
 
