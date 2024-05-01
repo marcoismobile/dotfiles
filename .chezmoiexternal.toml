@@ -24,21 +24,14 @@
     stripComponents = 1
     refreshPeriod = "168h"
 {{- end}}
+{{if .mobile -}}
+[".termux/font.ttf"]
+{{- end}}
 {{if .home -}}
 [".fonts/MesloLGS NF Regular.ttf"]
+{{- end}}
+{{if (or .mobile .home) -}}
     type = "file"
     url = "https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS NF Regular.ttf"
-    refreshPeriod = "4380h"
-[".fonts/MesloLGS NF Bold.ttf"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS NF Bold.ttf"
-    refreshPeriod = "4380h"
-[".fonts/MesloLGS NF Italic.ttf"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS NF Italic.ttf"
-    refreshPeriod = "4380h"
-[".fonts/MesloLGS NF Bold Italic.ttf"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS NF Bold Italic.ttf"
     refreshPeriod = "4380h"
 {{- end}}

@@ -1,5 +1,5 @@
 # Set APT defaults
-APT="apt --quiet --assume-yes --no-install-recommends"
+APT="DEBIAN_FRONTEND=noninteractive apt --quiet --assume-yes --no-install-recommends"
 
 # Change Mirror
 echo "deb https://ftp.fau.de/termux/termux-main stable main" > "$PREFIX/etc/apt/sources.list"
@@ -15,9 +15,6 @@ $APT install age cloudflared curl dnsutils git gzip inetutils \
 # Cleanup
 $APT autoremove
 $APT autoclean
-
-# Install Nerd Font
-[ ! -f "$HOME/.termux/font.ttf" ] && curl -sSLo "$HOME/.termux/font.ttf" "https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS%20NF%20Regular.ttf"
 
 # Change Shell
 chsh -s zsh
