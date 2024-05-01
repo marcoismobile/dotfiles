@@ -1,5 +1,5 @@
 # Set APT defaults
-APT="DEBIAN_FRONTEND=noninteractive apt --quiet --assume-yes --no-install-recommends"
+APT="DEBIAN_FRONTEND=noninteractive apt-get --quiet --assume-yes --no-install-recommends"
 
 # Change Mirror
 echo "deb https://ftp.fau.de/termux/termux-main stable main" > "$PREFIX/etc/apt/sources.list"
