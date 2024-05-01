@@ -2,7 +2,7 @@
 APT="apt --quiet --assume-yes --no-install-recommends"
 
 # Change Mirror
-echo "deb https://ftp.fau.de/termux/termux-main stable main" > "${PREFIX}/etc/apt/sources.list"
+echo "deb https://ftp.fau.de/termux/termux-main stable main" > "$PREFIX/etc/apt/sources.list"
 
 # Upgrade system
 $APT update
@@ -16,8 +16,8 @@ $APT install age cloudflared curl dnsutils git gzip inetutils \
 $APT autoremove
 $APT autoclean
 
-# Copy Nerd Font
-cp "${HOME}/.fonts/MesloLGS NF Regular.ttf" "${HOME}/.termux/font.ttf"
+# Install Nerd Font
+curl -sSLo "$HOME/.termux/font.ttf" "https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS NF Regular.ttf"
 
 # Change Shell
 chsh -s zsh
