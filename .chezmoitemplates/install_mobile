@@ -17,7 +17,7 @@ $APT autoremove
 $APT autoclean
 
 # Install Nerd Font
-curl -sSLo "$HOME/.termux/font.ttf" "https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS NF Regular.ttf"
+[ ! -f "$HOME/.termux/font.ttf" ] && curl -sSLo "$HOME/.termux/font.ttf" "https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS%20NF%20Regular.ttf"
 
 # Change Shell
 chsh -s zsh

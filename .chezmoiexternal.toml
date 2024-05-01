@@ -10,6 +10,12 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
+[".submodules/zsh-syntax-highlighting"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
 {{if not .server -}}
 [".submodules/zsh-powerlevel10k"]
     type = "archive"
@@ -17,6 +23,8 @@
     exact = false
     stripComponents = 1
     refreshPeriod = "168h"
+{{- end}}
+{{if .home -}}
 [".fonts/MesloLGS NF Regular.ttf"]
     type = "file"
     url = "https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS NF Regular.ttf"
@@ -34,9 +42,3 @@
     url = "https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS NF Bold Italic.ttf"
     refreshPeriod = "4380h"
 {{- end}}
-[".submodules/zsh-syntax-highlighting"]
-    type = "archive"
-    url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
