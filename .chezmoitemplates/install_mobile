@@ -9,6 +9,7 @@ EOF
 APT="apt --quiet --assume-yes --no-install-recommends"
 
 # Change Mirror
+ln -s "$PREFIX/etc/termux/mirrors/europe/ftp.fau.de" "$PREFIX/etc/termux/chosen_mirrors"
 echo "deb https://ftp.fau.de/termux/termux-main stable main" > "$PREFIX/etc/apt/sources.list"
 
 # Upgrade system
