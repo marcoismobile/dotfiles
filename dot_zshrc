@@ -1,11 +1,15 @@
 # vim: filetype=zsh
-# Powerlevel10k instant prompt (Should stay close to the top of ~/.zshrc)
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+
+# Powerlevel10k instant prompt
+if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Colors
-if [[ -z "$LS_COLORS" ]]; then
+if [[ -z "${LS_COLORS}" ]]; then
     (( $+commands[dircolors] )) && eval "$(dircolors -b)"
 fi
 
@@ -41,11 +45,6 @@ setopt autocd
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
-
-# Exports
-export XDG_CACHE_HOME="${HOME}/.cache"
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_DATA_HOME="${HOME}/.local/share"
 
 # Editor
 (( $+commands[nvim] )) && export EDITOR='nvim' || export EDITOR='vim'
@@ -144,7 +143,7 @@ fi
 # Update GPG variables
 if [[ -f ~/.gnupg/gpg-agent.conf ]] && (( $+commands[gpgconf] )); then
     # Unset DBUS on SSH session to get Pinentry on console
-    if [ -n "$SSH_CLIENT" ]; then
+    if [ -n "${SSH_CLIENT}" ]; then
         export DBUS_SESSION_BUS_ADDRESS=/dev/null
     fi
     export GPG_TTY=$TTY
