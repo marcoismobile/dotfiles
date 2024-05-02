@@ -1,6 +1,7 @@
 README.md
 chezmoi.key.age
 scripts
+windows
 {{- if .server }}
 .ssh
 {{- end }}
