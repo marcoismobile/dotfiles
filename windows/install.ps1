@@ -3,7 +3,7 @@
 # > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 #
 
-# Self-Elevate if required
+# Auto-Elevate
 if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
     if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
         $CommandLine = "-File `"" + $MyInvocation.MyCommand.Path + "`" " + $MyInvocation.UnboundArguments
@@ -14,9 +14,6 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 
 # Set Non-Interactive Options
 $noninteractive = '--silent', '--disable-interactivity', '--accept-source-agreements'
-
-# Get CLI argument
-$command = $args[0]
 
 function Disable-Services
 {
@@ -83,6 +80,7 @@ function Winget-Install
     @{ id = "Microsoft.VisualStudioCode" },
     @{ id = "Mozilla.Firefox" },
     @{ id = "MullvadVPN.MullvadVPN" },
+    @{ id = "Neovim.Neovim" },
     @{ id = "RealVNC.VNCViewer" },
     @{ id = "Spotify.Spotify" },
     @{ id = "TeamViewer.TeamViewer" },
@@ -115,8 +113,25 @@ function Desktop-Cleanup
   }
 }
 
+function Fonts-Install
+{
+  $base_url = "https://github.com/romkatv/powerlevel10k-media/raw/master/"
+  $fonts = @(
+    @{ name = "MesloLGS NF Regular"; url = "$base_url/MesloLGS%20NF%20Regular.ttf" },
+    @{ name = "MesloLGS NF Bold"; url = "$base_url/MesloLGS%20NF%20Bold.ttf" },
+    @{ name = "MesloLGS NF Italic"; url = "$base_url/MesloLGS%20NF%20Italic.ttf" },
+    @{ name = "MesloLGS NF Bold Italic"; url = "$base_url/MesloLGS%20NF%20Bold%20Italic.ttf" }
+  );
+  Foreach ($f in $fonts) {
+    $dest = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts\$($f.name).ttf"
+    Write-host "Installing Font:" $f.name "->" $dest
+    curl --progress-bar --output $dest $f.url
+    New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "$($f.name) (TrueType)" -PropertyType String -Value $dest -Force
+  }
+}
+
 # Command Selection
-switch ($command)
+switch ($args[0])
 {
   "install" {
     Winget-Install
@@ -131,8 +146,11 @@ switch ($command)
     Winget-Uninstall
     Desktop-Cleanup
   }
+  "fonts-install" {
+    Fonts-Install
+  }
   default {
-    Write-Host "No command selected: [ install, upgrade, cleanup ]"
+    Write-Host "No command selected: [ install, upgrade, cleanup, fonts-install ]"
   }
 }
 
