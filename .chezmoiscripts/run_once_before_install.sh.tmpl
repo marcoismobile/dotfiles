@@ -3,14 +3,14 @@
 #
 # Initial system installation
 #
-{{- if .home }}
-{{ template "install_home" . }}
+{{- if .workstation }}
+{{ template "install_workstation" . }}
+{{ end -}}
+
+{{- if .android }}
+{{ template "install_android" . }}
 {{ end -}}
 
 {{- if .server }}
 {{ template "install_server" . }}
-{{ end -}}
-
-{{- if .mobile }}
-{{ template "install_mobile" . }}
 {{ end -}}

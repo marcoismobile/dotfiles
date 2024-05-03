@@ -1,18 +1,16 @@
-{{- $home := false -}}
+{{- $workstation := false -}}
 {{- $wsl := false -}}
+{{- $android := false -}}
 {{- $server := false -}}
-{{- $mobile := false -}}
 
-{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu")) -}}
-{{-   if (eq .chezmoi.hostname "hyperion") -}}
-{{-     $home = true -}}
-{{-   else if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
-{{-     $wsl = true -}}
-{{-   else -}}
-{{-     $server = true -}}
-{{-   end -}}
+{{- if (eq .chezmoi.hostname "hyperion") -}}
+{{-   $workstation = true -}}
+{{- else if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+{{-   $wsl = true -}}
 {{- else if (eq .chezmoi.os "android") -}}
-{{-   $mobile = true -}}
+{{-   $android = true -}}
+{{- else if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu")) -}}
+{{-   $server = true -}}
 {{- end -}}
 
 encryption = "age"
@@ -31,7 +29,7 @@ encryption = "age"
 [data]
     name = "Marco"
     email = "nobody@home.now"
-    home = {{ $home }}
+    workstation = {{ $workstation }}
     wsl = {{ $wsl }}
+    android = {{ $android }}
     server = {{ $server }}
-    mobile = {{ $mobile }}

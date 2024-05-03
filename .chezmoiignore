@@ -5,17 +5,17 @@ windows
 {{- if .server }}
 .ssh
 {{- end }}
-{{- if (or .mobile .server) }}
+{{- if (or .android .server) }}
 .config/foot
 .config/i3status
 .config/mutt
 .config/sway
 .gnupg
 {{- end }}
-{{- if not .mobile }}
+{{- if not .android }}
 .termux
 .hushlogin
 {{- end }}
-{{- if not .home }}
+{{- if not .workstation }}
 vnc_server.sh
 {{- end }}
