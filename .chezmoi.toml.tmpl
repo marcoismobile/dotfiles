@@ -1,16 +1,17 @@
 {{- $workstation := false -}}
-{{- $wsl := false -}}
 {{- $android := false -}}
+{{- $wsl := false -}}
 {{- $server := false -}}
 
 {{- if (eq .chezmoi.hostname "hyperion") -}}
 {{-   $workstation = true -}}
-{{- else if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
-{{-   $wsl = true -}}
 {{- else if (eq .chezmoi.os "android") -}}
 {{-   $android = true -}}
 {{- else if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu")) -}}
-{{-   $server = true -}}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+{{-     $wsl = true -}}
+{{-   else -}}
+{{-     $server = true -}}
 {{- end -}}
 
 encryption = "age"
@@ -30,6 +31,6 @@ encryption = "age"
     name = "Marco"
     email = "nobody@home.now"
     workstation = {{ $workstation }}
-    wsl = {{ $wsl }}
     android = {{ $android }}
+    wsl = {{ $wsl }}
     server = {{ $server }}
