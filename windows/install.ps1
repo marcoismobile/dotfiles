@@ -22,20 +22,35 @@ function Disable-Services
   # Disable Services
   $services = @(
     @{ name = "AllJoyn Router Service" },
+    @{ name = "BitLocker Drive Encryption Service" },
+    @{ name = "Connected User Experiences*" },
+    @{ name = "Diagnostic*" },
+    @{ name = "Downloaded Maps Manager" },
+    @{ name = "Geolocation Service" },
     @{ name = "HV Host Service" },
     @{ name = "Hyper-V*" },
+    @{ name = "Netlogon" },
+    @{ name = "Optimise drives" },
+    @{ name = "Parental Controls" },
     @{ name = "Phone Service" },
     @{ name = "Print Spooler" },
     @{ name = "Printer Extensions and Notifications" },
     @{ name = "Remote Desktop*" },
     @{ name = "Remote Registry" },
     @{ name = "Server" },
+    @{ name = "Smart Card*" },
     @{ name = "TCP/IP NetBIOS Helper" },
     @{ name = "Telephony" },
     @{ name = "Themes" },
+    @{ name = "WalletService" },
+    @{ name = "Windows Biometric Service" },
+    @{ name = "Windows Error Reporting Service" },
+    @{ name = "Windows Insider Service" },
     @{ name = "Windows Media Player*" },
+    @{ name = "Windows Mobile Hotspot Service" },
     @{ name = "Windows Search" },
     @{ name = "Workstation" },
+    @{ name = "Work Folders" },
     @{ name = "WSL Service" },
     @{ name = "Xbox*" }
   );
@@ -115,17 +130,17 @@ function Desktop-Cleanup
 
 function Fonts-Install
 {
-  $base_url = "https://github.com/romkatv/powerlevel10k-media/raw/master/"
+  $base_url = "https://github.com/romkatv/powerlevel10k-media/raw/master"
   $fonts = @(
-    @{ name = "MesloLGS NF Regular"; url = "$base_url/MesloLGS%20NF%20Regular.ttf" },
-    @{ name = "MesloLGS NF Bold"; url = "$base_url/MesloLGS%20NF%20Bold.ttf" },
-    @{ name = "MesloLGS NF Italic"; url = "$base_url/MesloLGS%20NF%20Italic.ttf" },
-    @{ name = "MesloLGS NF Bold Italic"; url = "$base_url/MesloLGS%20NF%20Bold%20Italic.ttf" }
+    @{ name = "MesloLGS NF Regular" },
+    @{ name = "MesloLGS NF Bold" },
+    @{ name = "MesloLGS NF Italic" },
+    @{ name = "MesloLGS NF Bold Italic" }
   );
   Foreach ($f in $fonts) {
     $dest = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts\$($f.name).ttf"
     Write-host "Installing Font:" $f.name "->" $dest
-    curl --progress-bar --output $dest $f.url
+    Invoke-WebRequest -Uri "$base_url/$($f.name).ttf" -OutFile $dest -ProgressAction SilentlyContinue
     New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "$($f.name) (TrueType)" -PropertyType String -Value $dest -Force
   }
 }
@@ -149,8 +164,15 @@ switch ($args[0])
   "fonts-install" {
     Fonts-Install
   }
+  "init" {
+    Winget-Uninstall
+    Disable-Services
+    Winget-Install
+    Fonts-Install
+    Desktop-Cleanup
+  }
   default {
-    Write-Host "No command selected: [ install, upgrade, cleanup, fonts-install ]"
+    Write-Host "No argument selected: ./install.ps1 [ install, upgrade, cleanup, fonts-install, init ]"
   }
 }
 
