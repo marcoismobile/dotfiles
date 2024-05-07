@@ -62,7 +62,7 @@ function Disable-Services
     @{ name = "Xbox*" }
   );
   Foreach ($s in $services) {
-    Write-host "Disabling Service: " $s.name
+    Write-host "Disabling Service: $($s.name)"
     Get-Service -displayname $s.name | Stop-Service -PassThru | Set-Service -StartupType Disabled
   }
 }
@@ -85,7 +85,7 @@ function Winget-Uninstall
     @{ name = "Xbox Identity Provider" }
   );
   Foreach ($app in $uninstall) {
-    Write-host "Uninstalling Application: " $app.name
+    Write-host "Uninstalling Application: $($app.name)"
     winget uninstall $noninteractive --exact --purge --name $app.name
   }
 }
@@ -105,12 +105,16 @@ function Winget-Install
     @{ id = "Neovim.Neovim" },
     @{ id = "RealVNC.VNCViewer" },
     @{ id = "Spotify.Spotify" },
-    @{ id = "TeamViewer.TeamViewer" },
-    @{ id = "XBMCFoundation.Kodi" }
+    @{ id = "TeamViewer.TeamViewer" }
   );
   Foreach ($app in $install) {
-    Write-host "Installing Application: " $app.id
-    winget install $noninteractive --exact --source winget --id $app.id
+    $listApp = winget list --exact -q $app.id
+    if (![String]::Join("", $listApp).Contains($app.id)) {
+      Write-host "Installing Application: $($app.id)"
+      winget install $noninteractive --exact --source winget --id $app.id
+    } else {
+      Write-host "Application already installed: $($app.id)"
+    }
   }
 }
 
