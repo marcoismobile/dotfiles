@@ -25,14 +25,24 @@ function Disable-Services
   $services = @(
     @{ name = "AllJoyn Router Service" },
     @{ name = "BitLocker Drive Encryption Service" },
-    @{ name = "Connected User Experiences*" },
+    @{ name = "Connected User Experiences and Telemetry" },
     @{ name = "Data Usage" },
-    @{ name = "Diagnostic*" },
+    @{ name = "Diagnostic Execution Service" },
+    @{ name = "Diagnostic Policy Service" },
+    @{ name = "Diagnostic Service Host" },
+    @{ name = "Diagnostic System Host" },
     @{ name = "Distributed Link Tracking Client" },
     @{ name = "Downloaded Maps Manager" },
     @{ name = "Geolocation Service" },
     @{ name = "HV Host Service" },
-    @{ name = "Hyper-V*" },
+    @{ name = "Hyper-V Guest Service Interface" },
+    @{ name = "Hyper-V Heartbeat Service" },
+    @{ name = "Hyper-V Data Exchange Service" },
+    @{ name = "Hyper-V Remote Desktop Virtualization Service" },
+    @{ name = "Hyper-V Guest Shutdown Service" },
+    @{ name = "Hyper-V Time Synchronization Service" },
+    @{ name = "Hyper-V PowerShell Direct Service" },
+    @{ name = "Hyper-V Volume Shadow Copy Requestor" },
     @{ name = "IP Helper" },
     @{ name = "Microsoft Account Sign-in Assistant" },
     @{ name = "Netlogon" },
@@ -42,10 +52,14 @@ function Disable-Services
     @{ name = "Portable Device Enumerator Service" },
     @{ name = "Print Spooler" },
     @{ name = "Printer Extensions and Notifications" },
-    @{ name = "Remote Desktop*" },
+    @{ name = "Remote Desktop Configuration" },
+    @{ name = "Remote Desktop Services" },
+    @{ name = "Remote Desktop Services UserMode Port Redirector" },
     @{ name = "Remote Registry" },
     @{ name = "Server" },
-    @{ name = "Smart Card*" },
+    @{ name = "Smart Card" },
+    @{ name = "Smart Card Device Enumeration Service" },
+    @{ name = "Smart Card Removal Policy" },
     @{ name = "TCP/IP NetBIOS Helper" },
     @{ name = "Telephony" },
     @{ name = "Themes" },
@@ -54,17 +68,21 @@ function Disable-Services
     @{ name = "Windows Error Reporting Service" },
     @{ name = "Windows Image Acquisition (WIA)" },
     @{ name = "Windows Insider Service" },
-    @{ name = "Windows Media Player*" },
+    @{ name = "Windows Media Player Network Sharing Service" },
     @{ name = "Windows Mobile Hotspot Service" },
     @{ name = "Windows Push Notifications System*" },
     @{ name = "Windows Search" },
     @{ name = "Workstation" },
+    @{ name = "Work Folders" },
     @{ name = "WSL Service" },
-    @{ name = "Xbox*" }
+    @{ name = "Xbox Live Auth Manager" },
+    @{ name = "Xbox Live Game Save" },
+    @{ name = "Xbox Accessory Management Service" },
+    @{ name = "Xbox Live Networking Service" }
   );
   Foreach ($s in $services) {
     Write-host "Disabling Service: $($s.name)" -ForegroundColor DarkGray
-    Get-Service -displayname $s.name | Stop-Service -PassThru | Set-Service -StartupType Disabled
+    Get-Service -displayname $s.name -ErrorAction SilentlyContinue | Stop-Service -PassThru | Set-Service -StartupType Disabled
   }
 }
 
