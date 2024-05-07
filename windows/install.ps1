@@ -3,13 +3,15 @@
 # > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 #
 
-# Auto-Elevate
-if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
+# Auto-Elevate for disabling services
+if ($args[0] -eq 'disable-services') {
+  if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
     if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
-        $CommandLine = "-NoExit -File `"" + $MyInvocation.MyCommand.Path + "`" " + $MyInvocation.UnboundArguments
-        Start-Process -FilePath pwsh.exe -Verb Runas -ArgumentList $CommandLine
-        Exit
+      $CommandLine = "-NoExit -File `"" + $MyInvocation.MyCommand.Path + "`" " + $MyInvocation.UnboundArguments
+      Start-Process -FilePath pwsh.exe -Verb Runas -ArgumentList $CommandLine
+      Exit
     }
+  }
 }
 
 # Set Non-Interactive Options
@@ -61,7 +63,7 @@ function Disable-Services
     @{ name = "Xbox*" }
   );
   Foreach ($s in $services) {
-    Write-host "Disabling Service: $($s.name)"
+    Write-host "Disabling Service: $($s.name)" -ForegroundColor DarkGray
     Get-Service -displayname $s.name | Stop-Service -PassThru | Set-Service -StartupType Disabled
   }
 }
@@ -86,10 +88,12 @@ function Winget-Uninstall
   $appList = [String]::Join("", $(winget list))
   Foreach ($app in $uninstall) {
     if ($appList.Contains($app.name)) {
-      Write-host "Uninstalling Application: $($app.name)"
+      Write-host "Uninstalling Application: $($app.name)" -ForegroundColor DarkGray
+
       winget uninstall $noninteractive --exact --purge --name $app.name
     } else {
-      Write-host "Application not installed: $($app.name)"
+      Write-host "Application not installed: $($app.name)" -ForegroundColor DarkGray
+
     }
   }
 }
@@ -116,10 +120,10 @@ function Winget-Install
   $appList = [String]::Join("", $(winget list))
   Foreach ($app in $install) {
     if (!$appList.Contains($app.id)) {
-      Write-host "Installing Application: $($app.id)"
+      Write-host "Installing Application: $($app.id)" -ForegroundColor DarkGray
       winget install $noninteractive --exact --source winget --id $app.id
     } else {
-      Write-host "Application already installed: $($app.id)"
+      Write-host "Application already installed: $($app.id)" -ForegroundColor DarkGray
     }
   }
 }
@@ -147,6 +151,7 @@ function Desktop-Cleanup
 
 function Fonts-Install
 {
+  Write-Host "Installing MesloLGS NF ..."
   $base_url = "https://github.com/romkatv/powerlevel10k-media/raw/master"
   $fonts = @(
     @{ name = "MesloLGS NF Regular" },
@@ -156,7 +161,7 @@ function Fonts-Install
   );
   Foreach ($f in $fonts) {
     $dest = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts\$($f.name).ttf"
-    Write-host "Installing Font:" $f.name "->" $dest
+    Write-host "Installing Font: $($f.name) -> $dest" -ForegroundColor DarkGray
     Invoke-WebRequest -Uri "$base_url/$($f.name).ttf" -OutFile $dest -ProgressAction SilentlyContinue
     New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" -Name "$($f.name) (TrueType)" -PropertyType String -Value $dest -Force
   }
@@ -173,22 +178,17 @@ switch ($args[0])
     Winget-Upgrade
     Desktop-Cleanup
   }
-  "cleanup" {
-    Disable-Services
+  "uninstall" {
     Winget-Uninstall
     Desktop-Cleanup
+  }
+  "disable-services" {
+    Disable-Services
   }
   "fonts-install" {
     Fonts-Install
   }
-  "init" {
-    Winget-Uninstall
-    Disable-Services
-    Winget-Install
-    Fonts-Install
-    Desktop-Cleanup
-  }
   default {
-    Write-Host "No argument selected: ./install.ps1 [ install, upgrade, cleanup, fonts-install, init ]"
+    Write-Host "No argument selected: ./install.ps1 [ install, upgrade, uninstall, disable-services, fonts-install ]"
   }
 }
