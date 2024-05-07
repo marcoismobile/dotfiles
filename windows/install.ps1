@@ -57,7 +57,6 @@ function Disable-Services
     @{ name = "Windows Push Notifications System*" },
     @{ name = "Windows Search" },
     @{ name = "Workstation" },
-    @{ name = "Work Folders" },
     @{ name = "WSL Service" },
     @{ name = "Xbox*" }
   );
@@ -84,9 +83,14 @@ function Winget-Uninstall
     @{ name = "Xbox Game Speech Window" },
     @{ name = "Xbox Identity Provider" }
   );
+  $appList = [String]::Join("", $(winget list))
   Foreach ($app in $uninstall) {
-    Write-host "Uninstalling Application: $($app.name)"
-    winget uninstall $noninteractive --exact --purge --name $app.name
+    if ($appList.Contains($app.name)) {
+      Write-host "Uninstalling Application: $($app.name)"
+      winget uninstall $noninteractive --exact --purge --name $app.name
+    } else {
+      Write-host "Application not installed: $($app.name)"
+    }
   }
 }
 
@@ -97,6 +101,7 @@ function Winget-Install
   # Install Packages
   $install = @(
     @{ id = "Cloudflare.cloudflared" },
+    @{ id = "Git.Git" },
     @{ id = "lsd-rs.lsd" },
     @{ id = "Microsoft.PowerShell" },
     @{ id = "Microsoft.VisualStudioCode" },
@@ -105,11 +110,12 @@ function Winget-Install
     @{ id = "Neovim.Neovim" },
     @{ id = "RealVNC.VNCViewer" },
     @{ id = "Spotify.Spotify" },
-    @{ id = "TeamViewer.TeamViewer" }
+    @{ id = "TeamViewer.TeamViewer" },
+    @{ id = "TradingView.TradingViewDesktop" }
   );
+  $appList = [String]::Join("", $(winget list))
   Foreach ($app in $install) {
-    $listApp = winget list --exact -q $app.id
-    if (![String]::Join("", $listApp).Contains($app.id)) {
+    if (!$appList.Contains($app.id)) {
       Write-host "Installing Application: $($app.id)"
       winget install $noninteractive --exact --source winget --id $app.id
     } else {
