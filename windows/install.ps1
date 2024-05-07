@@ -136,7 +136,7 @@ function Winget-Upgrade
 
 function Desktop-Cleanup
 {
-  Write-Host "Cleanup Desktop Icons..."
+  Write-Host "Cleanup Desktop Icons ..."
 
   # Get Desktop Shortcuts
   $desktop = [Environment]::GetFolderPath('Desktop'), [Environment]::GetFolderPath('CommonDesktop') |
