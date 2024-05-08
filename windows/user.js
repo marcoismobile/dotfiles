@@ -8,19 +8,19 @@ user_pref("browser.startup.homepage", "chrome://browser/content/blanktab.html");
 // Disable activity stream on new windows and tab pages
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.newtab.preload", false);
-user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false); // disable telemetry
-user_pref("browser.newtabpage.activity-stream.telemetry", false); // disable telemetry
+user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
+user_pref("browser.newtabpage.activity-stream.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
 user_pref("browser.newtabpage.activity-stream.feeds.discoverystreamfeed", false);
-user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Pocket -> Sponsored Stories
-user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // Sponsored Shortcuts
+user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
 // Set language for displaying web pages:
 user_pref("intl.accept_languages", "en-US, en");
-user_pref("javascript.use_us_english_locale", true); // [HIDDEN PREF]
+user_pref("javascript.use_us_english_locale", true);
 
 // Disable auto-installing Firefox updates
 user_pref("app.update.background.scheduling.enabled", false); // Windows
@@ -39,7 +39,7 @@ user_pref("browser.translations.panelShown", true);
 // Disable telemetry
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
 user_pref("datareporting.healthreport.uploadEnabled", false);
-user_pref("toolkit.telemetry.enabled", false); // Default: false
+user_pref("toolkit.telemetry.enabled", false);
 user_pref("toolkit.telemetry.unified", false);
 user_pref("toolkit.telemetry.server", "data:,");
 user_pref("toolkit.telemetry.archive.enabled", false);
@@ -48,11 +48,26 @@ user_pref("toolkit.telemetry.shutdownPingSender.enabled", false);
 user_pref("toolkit.telemetry.updatePing.enabled", false);
 user_pref("toolkit.telemetry.bhrPing.enabled", false);
 user_pref("toolkit.telemetry.firstShutdownPing.enabled", false);
-user_pref("toolkit.telemetry.coverage.opt-out", true); // [HIDDEN PREF]
-user_pref("toolkit.coverage.opt-out", true); // [HIDDEN PREF]
+user_pref("toolkit.telemetry.coverage.opt-out", true);
+user_pref("toolkit.coverage.opt-out", true);
 user_pref("toolkit.coverage.endpoint.base.", "");
 user_pref("browser.ping-centre.telemetry", false);
 user_pref("beacon.enabled", false);
+
+// Fingerprinting
+user_pref("privacy.resistFingerprinting", true);
+user_pref("privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts", true);
+user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
+user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
+user_pref("privacy.resistFingerprinting.jsmloglevel", "Warn");
+user_pref("privacy.resistFingerprinting.letterboxing", true);
+user_pref("privacy.resistFingerprinting.randomDataOnCanvasExtract", true);
+user_pref("privacy.resistFingerprinting.reduceTimerPrecision.jitter", true);
+user_pref("privacy.resistFingerprinting.reduceTimerPrecision.microseconds", 1000);
+user_pref("privacy.resistFingerprinting.target_video_res", 480);
+user_pref("privacy.resistFingerprinting.testGranularityMask", 0);
+user_pref("services.sync.prefs.sync.privacy.resistFingerprinting.reduceTimerPrecision.jitter", true);
+user_pref("services.sync.prefs.sync.privacy.resistFingerprinting.reduceTimerPrecision.microseconds", true);
 
 // Disable studies
 user_pref("app.shield.optoutstudies.enabled", false);
@@ -69,7 +84,7 @@ user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("browser.cache.disk.enable", false);
 user_pref("browser.sessionstore.privacy_level", 2);
 user_pref("browser.sessionstore.resume_from_crash", false);
-user_pref("browser.pagethumbnails.capturing_disabled", true); // [HIDDEN PREF]
+user_pref("browser.pagethumbnails.capturing_disabled", true);
 user_pref("browser.shell.shortcutFavicons", false);
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
 
@@ -110,9 +125,5 @@ user_pref("media.autoplay.default", 5);
 // Disable DRM Content
 user_pref("media.eme.enabled", false);
 
-// Set Mullvad SOCKS5
-user_pref("network.proxy.no_proxies_on", "192.168.1.0/24");
-user_pref("network.proxy.socks", "10.64.0.1");
-user_pref("network.proxy.socks_port", 1080);
-user_pref("network.proxy.socks_version", 5);
-user_pref("network.proxy.type", 1);
+// Set System Proxy
+user_pref("network.proxy.type", 5);
