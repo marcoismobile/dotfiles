@@ -60,7 +60,7 @@ user_pref("privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts", tr
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
 user_pref("privacy.resistFingerprinting.exemptedDomains", "*.example.invalid");
 user_pref("privacy.resistFingerprinting.jsmloglevel", "Warn");
-user_pref("privacy.resistFingerprinting.letterboxing", true);
+//user_pref("privacy.resistFingerprinting.letterboxing", true);
 user_pref("privacy.resistFingerprinting.randomDataOnCanvasExtract", true);
 user_pref("privacy.resistFingerprinting.reduceTimerPrecision.jitter", true);
 user_pref("privacy.resistFingerprinting.reduceTimerPrecision.microseconds", 1000);
@@ -124,6 +124,3 @@ user_pref("media.autoplay.default", 5);
 
 // Disable DRM Content
 user_pref("media.eme.enabled", false);
-
-// Set System Proxy
-user_pref("network.proxy.type", 5);
