@@ -137,7 +137,7 @@ else
     zstyle ':vcs_info:git:*' actionformats '[%F{cyan}%b (%a)%f%c%u]'
     setopt PROMPT_PERCENT
     setopt PROMPT_SUBST
-    PROMPT='%(?..%F{red}[%?] )%f%2~ ${vcs_info_msg_0_}%(!.%F{red}#%f.%f») '
+    PROMPT='%(?..%F{red}[%?] )%f%F{blue}%2~%f ${vcs_info_msg_0_}%(!.%F{red}#%f.%F{green}❯%f) '
 fi
 
 # Update GPG variables
